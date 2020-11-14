@@ -42,7 +42,7 @@ public extension AVAsset {
 		return self.value(forKey: attribute.key) as? T
 	}
 
-	public func loadDuration(completion: @escaping ((_ duration: NSNumber?) -> Void)) {
+    func loadDuration(completion: @escaping ((_ duration: NSNumber?) -> Void)) {
 		self.loadAttributeAsynchronously(.duration) {
 			guard let durationInSeconds = self.loadedAttributeValue(for: .duration) as CMTime? else {
 				DispatchQueue.main.async {
@@ -61,7 +61,7 @@ public extension AVAsset {
 		}
 	}
 
-	public func load(_ attribute: DynamicAttribute, completion: @escaping ((_ items: [AVMetadataItem]) -> Void)) {
+    func load(_ attribute: DynamicAttribute, completion: @escaping ((_ items: [AVMetadataItem]) -> Void)) {
 		self.loadAttributeAsynchronously(attribute) {
 			let metadataItems = self.loadedAttributeValue(for: attribute) as [AVMetadataItem]?
 			DispatchQueue.main.async {
